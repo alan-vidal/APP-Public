@@ -55,7 +55,7 @@ export let licitOPDay = async function (fullUrl: string) {
         });
       }
     }
-    //console.log("CONSULTA OBRAS 0124: ", listaObras);
+    console.log("CONSULTA OBRAS 0124: ", listaObras);
     return listaObras;
   }
   return listaObras;
