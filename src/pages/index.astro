@@ -1,0 +1,15 @@
+---
+import Licitaciones0P from "../components/Licitaciones0P.astro";
+import Layout from "../layout/Layout.astro";
+---
+
+<Layout title="MPQ - Licitaciones">
+    <h1>Listado de Licitaciones publicadas hoy</h1>
+    <p>
+        El siguiente aplicato contempla la extracion de datos de la API de
+        Mercado Publico, filtra licitaciones exclusivas del MOP codigo: <span
+            class="code">O124</span
+        > luego informa las licitaciones asociadas a Asesorias de inspeccion fiscal.
+    </p>
+    <Licitaciones0P />
+</Layout>

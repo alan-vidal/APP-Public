@@ -1,0 +1,21 @@
+---
+import { fullUrlID } from "../script/fullUrlID.ts";
+import { estadoAPI } from "../script/status.ts";
+import { today } from "../script/today.ts"; //fechaOrder
+
+const status: number = await estadoAPI(fullUrlID(today()));
+---
+
+<header>
+    <nav>
+        <h1>Lisitaciones MOP - MPQ</h1>
+        <ul>
+            <li>Estado <span class="code">{status}</span></li>
+            <li>
+                <a href="https://www.mercadopublico.cl/Home" target="_blank"
+                    >Mercado Publico</a
+                >
+            </li>
+        </ul>
+    </nav>
+</header>

@@ -1,0 +1,100 @@
+---
+import { licitOPDay, licitAIFDay } from "../script/licitacionesDay.ts";
+import { fullUrlDate } from "../script/fullUrlDate.ts";
+import { today } from "../script/today.ts"; //fechaOrder
+import { fechaOrder } from "../script/fechas.ts";
+
+let listaObras = await licitOPDay(fullUrlDate(today()));
+let listaAIF = licitAIFDay(listaObras);
+
+export let urlConsulta = function (codUrl: string) {
+    const UTRBASE =
+        "http://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?idlicitacion=";
+    let urlConsulta: string = UTRBASE + codUrl;
+    return urlConsulta;
+};
+---
+
+<!-- // -->
+<section>
+    <article>
+        <h2>Listado de Licitaciones del Ministerio de Obras Publicas</h2>
+        <!-- // -->
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Licitación ID:</th>
+                    <th class="td-left">Nombre de la licitación:</th>
+                    <th>Fecha de cierre:</th>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    listaObras.map((i) => (
+                        <tr>
+                            <td>{listaObras.indexOf(i) + 1}</td>
+                            <th
+                                class="td-right code"
+                                style="white-space: nowrap; min-width: 150px;"
+                            >
+                                {i.CodigoExterno}
+                            </th>
+                            <td class="td-left">
+                                <a
+                                    href={urlConsulta(i.CodigoExterno)}
+                                    target="_blank"
+                                >
+                                    {i.Nombre}
+                                </a>
+                            </td>
+                            <td style="white-space: nowrap;min-width: 150px;">
+                                {fechaOrder(i.FechaCierre)}
+                            </td>
+                        </tr>
+                    ))
+                }
+            </tbody>
+            <caption
+                >Licitaciones obtenidas por medio de <a
+                    href="https://api.mercadopublico.cl"
+                    target="_blank">API Mercado Publico</a
+                ></caption
+            >
+        </table>
+    </article>
+    <article>
+        <h2>
+            Licitaciones MOP con la categoria de Asesoria a la Inspeccion Fiscal
+        </h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Licitación ID:</th>
+                    <th class="td-left">Nombre de la licitación:</th>
+                    <th>Fecha de cierre:</th>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    listaAIF.map((i) => (
+                        <tr>
+                            <td>{listaAIF.indexOf(i) + 1}</td>
+                            <th class="td-right code">{i.CodigoExterno}</th>
+                            <td class="td-left">
+                                <a
+                                    href={urlConsulta(i.CodigoExterno)}
+                                    target="_blank"
+                                >
+                                    {i.Nombre}
+                                </a>
+                            </td>
+                            <td>{fechaOrder(i.FechaCierre)}</td>
+                        </tr>
+                    ))
+                }
+            </tbody>
+        </table>
+    </article>
+</section>
