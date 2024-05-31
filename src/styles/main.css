@@ -2,8 +2,8 @@
 @import url("https://api.fontshare.com/v2/css?f[]=gambetta@400&f[]=general-sans@600&display=swap");
 
 body {
-    margin-left: 120px;
-    margin-right: 120px;
+    margin-left: 5%;
+    margin-right: 5%;
     display: flex;
     flex-direction: column;
     align-content: space-between;

@@ -1,6 +1,6 @@
 // INPUT: A ID
 // OUTPUT: QUERY URL
-const TICKET: string = import.meta.env.SECRET_TICKET;
+const TICKET: string = import.meta.env.PUBLIC_TICKET;
 
 export let fullUrlID = function (id: string) {
   const apiUrl =
